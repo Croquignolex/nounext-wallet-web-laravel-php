@@ -1,0 +1,1 @@
+&copy; 2018 <a href="{{ config('company.web_site') }}" target="_blank">{{ config('company.name') }}</a> @lang('general.right')
