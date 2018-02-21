@@ -2,7 +2,7 @@
 
 <div class="dropdown {{ $style ?? '' }}">
     <button class="btn btn-light dropdown-toggle" id="languages" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-        <span class="oi oi-flag"></span>
+        <img src="{{ flag_img_asset($languageService->getCurrentLanguage()) }}" alt="...">
         &nbsp;&nbsp;@lang($languageService->getCurrentLanguageFullName())
     </button>
     <div class="dropdown-menu" aria-labelledby="languages">

@@ -5,7 +5,7 @@
 @endsection
 
 @section('body')
-    @include('partials.language.language', ['style' => 'lang'])
+    @include('partials.language.language', ['style' => 'lang dropleft'])
     <div class="row justify-content-center" style="padding-top: 5%">
         <div class="card app-main-border">
             <div class="card-header text-center app-main-bg"><h4 class=" text-uppercase">{{ config('app.name')}}</h4></div>

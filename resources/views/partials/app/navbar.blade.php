@@ -15,5 +15,6 @@
         @include('partials.app.notification.notification')
         &nbsp;&nbsp;&nbsp;
         @include('partials.language.language')
+        &nbsp;&nbsp;&nbsp;
     </div>
 </nav>
