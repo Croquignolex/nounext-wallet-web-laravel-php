@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Nouveau compte', 'breadcrumb' => ['Comptes', 'Nouveau compte']])
+@extends('layouts.app', ['page' => 'Nouveau compte'])
 
 @section('content') 
     <div class="row text-center">

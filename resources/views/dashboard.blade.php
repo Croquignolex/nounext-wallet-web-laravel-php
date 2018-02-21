@@ -1,9 +1,13 @@
-@extends('layouts.app', ['page' => 'general.dashboard', 'breadcrumb' => ['general.dashboard']])
+@extends('layouts.app', ['page' => 'general.dashboard'])
 
-@section('content') 
-    @lang('general.dashboard')  
+@section('content')
+    <div class="row">
+        <div class="col-lg-12">
+            @lang('general.dashboard')
+        </div>
+    </div>
 @endsection
 
 @push('page')
-    @include('partials.notification')
+    @include('partials.popup-alert')
 @endpush 

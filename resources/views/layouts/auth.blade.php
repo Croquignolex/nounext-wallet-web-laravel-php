@@ -25,5 +25,5 @@
    
 @push('script.layout')
     <script src="{{ js_asset('validations') }}"></script> 
-    @include('partials.notification') 
+    @include('partials.popup-alert')
 @endpush

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Modification du compte', 'breadcrumb' => ['Comptes', 'Modification du compte']])
+@extends('layouts.app', ['page' => 'Modification du compte'])
 
 @section('content') 
     <div class="row">

@@ -1,6 +1,6 @@
-@extends('layouts.app', ['page' => 'Comptes', 'breadcrumb' => ['Comptes']])
+@extends('layouts.app', ['page' => 'Comptes'])
 
-@section('content') 
+@section('content')
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default"> 
@@ -88,5 +88,5 @@
 @endsection
 
 @push('page') 
-    @include('partials.notification') 
+    @include('partials.popup-alert')
 @endpush 
