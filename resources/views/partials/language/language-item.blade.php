@@ -1,2 +1,2 @@
 @inject('languageService', 'App\Services\LanguageService')
-<li><a href="{{ $languageService->getUrl($language) }}">@lang($languageService->getLaguageFullName($language))</a></li> 
+<a class="dropdown-item" href="{{ $languageService->getUrl($language) }}">@lang($languageService->getLaguageFullName($language))</a>

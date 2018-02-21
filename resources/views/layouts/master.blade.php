@@ -19,7 +19,7 @@
         <link rel="stylesheet" href="{{ css_asset('animate') }}" type="text/css"> 
         <link rel="stylesheet" href="{{ css_asset('open-iconic-bootstrap.min') }}" type="text/css"> 
         <!-- Personalize css -->
-        <link rel="stylesheet" href="{{ css_asset('app') }}" type="text/css"> 
+        <link rel="stylesheet" href="{{ css_asset('master') }}" type="text/css">
         <!-- Layouts css -->
         @stack('style.layout') 
    
@@ -31,14 +31,15 @@
 
     <body class="bg-light">
         <div class="loader"></div>
-        <div class="container">@yield('body')</div>
+        @yield('body')
          
         <!-- Frameworks js -->
-        <script src="{{ js_asset('jquery.min') }}"></script>   
+        <script src="{{ js_asset('jquery.min') }}"></script>
+        <script src="{{ js_asset('popper.min') }}"></script>
         <script src="{{ js_asset('bootstrap.min') }}"></script>
         <script src="{{ js_asset('bootstrap-notify.min') }}"></script>  
         <!-- Personalize js -->
-        <script src="{{ js_asset('app') }}"></script>
+        <script src="{{ js_asset('master') }}"></script>
          <!-- Personalize js -->
         @stack('script.layout')  
     </body>

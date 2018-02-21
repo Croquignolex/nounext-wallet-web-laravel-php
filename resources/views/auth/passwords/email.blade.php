@@ -13,7 +13,7 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block" id="sendLink">
+            <button type="submit" class="btn app-main-bg btn-block" id="sendLink">
                 <span class="oi oi-location"></span> Envoyer le lien
             </button>
         </div>

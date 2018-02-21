@@ -1,0 +1,15 @@
+.loader {
+    position: fixed;
+    z-index: 9999;
+    opacity: 0.95;
+    background: url('../img/loader.gif') 50% 50% no-repeat #fff;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    cursor: progress;
+}
+
+.app-main-bg { background-color: #28a745; color: #FFFFFF; }
+.app-main-color { color: #28a745; }
+.app-main-border { border: 1px solid #28a745; }

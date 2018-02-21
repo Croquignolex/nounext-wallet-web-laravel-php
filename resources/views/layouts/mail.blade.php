@@ -14,7 +14,7 @@
     
     <body>  
         <div class="card border-success">
-            <div class="card-header text-center text-white bg-success"><h4 class=" text-uppercase">{{ config('app.name')}}</h4></div>
+            <div class="card-header text-center app-main-bg"><h4 class=" text-uppercase">{{ config('app.name')}}</h4></div>
             <div class="card-body"> 
                 @yield('body')
             </div>

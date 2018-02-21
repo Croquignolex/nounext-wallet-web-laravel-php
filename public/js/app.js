@@ -1,18 +1,6 @@
-$(window).on('load', function () {
-    $(".loader").fadeOut();
+$(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+        $(this).toggleClass('active');
+    });
 });
-
-function notification(notificationTitle, notificationMessage, notificationType, notificationIcon, notificationEnter, notificationExit, notificationDelay){
-	$.notify({
-		icon: notificationIcon,
-		title: '<strong>' + notificationTitle + '</strong><br />',
-		message: notificationMessage
-	},{    
-		type: notificationType,  
-		delay: notificationDelay,  
-		animate: {
-			enter: 'animated ' + notificationEnter,
-			exit: 'animated ' + notificationExit
-		}
-	});
-} 

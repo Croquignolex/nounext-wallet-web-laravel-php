@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block" id="login">
+            <button type="submit" class="btn app-main-bg btn-block" id="login">
                 <span class="oi oi-lock-unlocked"></span> Connexion
             </button>
         </div>

@@ -1,14 +1,12 @@
 @inject('languageService', 'App\Services\LanguageService')
 
-<div class="lang">
-    <div class="dropdown">
-      <button class="btn btn-default dropdown-toggle" type="button" id="languages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-      <em class="fa fa-flag"></em> @lang($languageService->getCurrentLanguageFullName())
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" aria-labelledby="languages">
-        <strong class="dropdown-header">@lang('general.languages')</strong>
+<div class="dropdown {{ $style ?? '' }}">
+    <button class="btn btn-light dropdown-toggle" id="languages" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <span class="oi oi-flag"></span>
+        &nbsp;&nbsp;@lang($languageService->getCurrentLanguageFullName())
+    </button>
+    <div class="dropdown-menu" aria-labelledby="languages">
+        <div class="dropdown-header font-weight-bold">@lang('general.languages')</div>
         @each('partials.language.language-item', $languageService->getLanguages(), 'language')
-      </ul>
-    </div> 
+    </div>
 </div>

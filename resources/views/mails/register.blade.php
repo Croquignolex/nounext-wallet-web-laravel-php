@@ -1,4 +1,4 @@
-@extends('layouts.mail', ['page' => 'Inscription'])
+@extends('layouts.mail')
 
 @section('body') 
     <h5 class="card-title text-dark text-uppercase">

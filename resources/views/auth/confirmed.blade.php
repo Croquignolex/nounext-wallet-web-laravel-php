@@ -10,7 +10,7 @@
 	</div>
 
     <div class="form-group text-center"> 
-        <a href="{{ route_manager('login') }}" class="btn btn-default">Connectez-vous</a>
+        <a href="{{ route_manager('login') }}" class="btn app-main-bg">Connectez-vous</a>
     </div>  
     {{ session()->flush() }}
 @endsection 

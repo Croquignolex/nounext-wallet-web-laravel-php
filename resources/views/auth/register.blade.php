@@ -40,7 +40,7 @@
         </div>  
 
         <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block" id="register">
+            <button type="submit" class="btn app-main-bg btn-block" id="register">
                 <span class="oi oi-person"></span> Inscription
             </button>
         </div>

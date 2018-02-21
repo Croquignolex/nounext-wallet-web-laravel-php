@@ -1,4 +1,9 @@
-@extends('layouts.error', [
-    'page' => 'errors.503',
-    'title' => 'errors.503_title',
-    'message' => 'errors.503_message'])
+@extends('layouts.error', ['page' => 'errors.503'])
+
+@section('error_title')
+    @lang('errors.503_title')
+@endsection
+
+@section('error_message')
+    @lang('errors.503_message')
+@endsection
