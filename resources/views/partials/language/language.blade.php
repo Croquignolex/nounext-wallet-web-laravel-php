@@ -10,3 +10,9 @@
         @each('partials.language.language-item', $languageService->getLanguages(), 'language')
     </div>
 </div>
+
+{{
+     /*
+     * TODO: Fix language dropdow for mobile
+     */
+}}

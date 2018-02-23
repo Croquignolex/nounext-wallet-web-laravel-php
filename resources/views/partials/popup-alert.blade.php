@@ -10,4 +10,10 @@
             "{{ session('notification.delay') }}"
         );
     </script>
-@endif 
+@endif
+
+{{
+     /*
+     * TODO: Fix popup alert for mobile
+     */
+}}
