@@ -5,18 +5,19 @@
 @endsection
 
 @section('body')
-    @include('partials.language.language', ['style' => 'lang dropleft'])
-    <div class="row justify-content-center" style="padding-top: 5%">
-        <div class="card app-main-border">
-            <div class="card-header text-center app-main-bg"><h4 class=" text-uppercase">{{ config('company.name') }} <strong>{{ config('app.name')}}</strong></h4></div>
-            <div class="card-body">
-                <h5 class="card-title app-main-color text-uppercase">{{ $page }}</h5>
-                @yield('form')
+    <div class="container-fluid">
+        @include('partials.language.language', ['style' => 'lang dropleft'])
+        <div class="row justify-content-center" style="padding-top: 50px">
+            <div class="card app-main-border">
+                <div class="card-header text-center app-main-bg"><h4 class=" text-uppercase">{{ config('company.name') }} <strong>{{ config('app.name')}}</strong></h4></div>
+                <div class="card-body">
+                    <h5 class="card-title app-main-color text-uppercase">{{ $page }}</h5>
+                    @yield('form')
+                </div>
             </div>
-        </div> 
+        </div>
+        @include('partials.footer')
     </div>
-
-    @include('partials.footer')
 @endsection
 
 @push('style.layout')
