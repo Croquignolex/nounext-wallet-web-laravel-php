@@ -11,8 +11,4 @@
     </div>
 </div>
 
-{{
-     /*
-     * TODO: Fix language dropdow for mobile
-     */
-}}
+{{--TODO: Fix language dropdow for mobile--}}

@@ -12,8 +12,4 @@
     </script>
 @endif
 
-{{
-     /*
-     * TODO: Fix popup alert for mobile
-     */
-}}
+{{--TODO: Fix popup alert for mobile--}}
