@@ -3,21 +3,11 @@
 @section('form')
     <form role="form" method="POST" action="{{ route_manager('password.email') }}">
         {{ csrf_field() }}
-        <div class="form-group"> 
-            <input placeholder="E-mail" type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" name="email" value="{{ old('email') }}">   
-            @if ($errors->has('email'))
-                <div class="invalid-feedback">
-                  {{ $errors->first('email') }}
-                </div> 
-            @endif 
-        </div>
+        @include('partials.input', ['placeholder' => 'E-mail', 'type' => 'email',
+           'name' => 'email', 'id' => 'email', 'value' => old('email')])
 
-        <div class="form-group">
-            <button type="submit" class="btn app-main-btn btn-block" id="sendLink">
-                <span class="oi oi-location"></span>&nbsp;
-                Envoyer le lien
-            </button>
-        </div>
+        @include('partials.submit', ['id' => 'sendLink', 'icon' => 'location',
+               'label' => 'Envoyer le lien'])
 
         <div class="form-group text-center">
             Vous n'avez pas de compte? <a href="{{ route_manager('register') }}" class="btn btn-default">Créer un compte</a><br />

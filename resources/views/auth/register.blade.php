@@ -2,49 +2,21 @@
 
 @section('form')
     <form role="form" method="POST" action="">
-        {{ csrf_field() }} 
-        <div class="form-group"> 
-            <input placeholder="Nom" type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" id="name" name="name" value="{{ old('name') }}">   
-            @if ($errors->has('name'))
-                <div class="invalid-feedback">
-                  {{ $errors->first('name') }}
-                </div> 
-            @endif 
-        </div>
+        {{ csrf_field() }}
+        @include('partials.input', ['placeholder' => 'Nom', 'type' => 'text',
+            'name' => 'name', 'id' => 'name', 'value' => old('name')])
 
-        <div class="form-group"> 
-            <input placeholder="E-mail" type="text" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" id="email" name="email" value="{{ old('email') }}">   
-            @if ($errors->has('email'))
-                <div class="invalid-feedback">
-                  {{ $errors->first('email') }}
-                </div> 
-            @endif 
-        </div>
+        @include('partials.input', ['placeholder' => 'E-mail', 'type' => 'email',
+            'name' => 'email', 'id' => 'email', 'value' => old('email')])
 
-        <div class="form-group">  
-            <input placeholder="Mot de passe" type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" id="password" name="password">    
-            @if ($errors->has('password'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('password') }}
-                </div>
-            @endif
-        </div> 
+        @include('partials.input', ['placeholder' => 'Mot de passe', 'type' => 'password',
+            'name' => 'password', 'id' => 'password', 'value' => old('password')])
 
-        <div class="form-group">  
-            <input placeholder="Mot de passe" type="password" class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" id="password_confirmation" name="password_confirmation">    
-            @if ($errors->has('password_confirmation'))
-                <div class="invalid-feedback">
-                    {{ $errors->first('password_confirmation') }}
-                </div>
-            @endif
-        </div>  
+        @include('partials.input', ['placeholder' => 'Resaisir le mot de passe', 'type' => 'password',
+           'name' => 'password_confirmation', 'id' => 'password_confirmation', 'value' => old('password_confirmation')])
 
-        <div class="form-group">
-            <button type="submit" class="btn app-main-btn btn-block" id="register">
-                <span class="oi oi-person"></span>&nbsp;
-                Inscription
-            </button>
-        </div>
+        @include('partials.submit', ['id' => 'register', 'icon' => 'person',
+               'label' => 'Inscription'])
 
         <div class="form-group text-center">
             Vous avez déjà un compte? <a href="{{ route_manager('login') }}" class="btn btn-default">Connectez-vous</a>
