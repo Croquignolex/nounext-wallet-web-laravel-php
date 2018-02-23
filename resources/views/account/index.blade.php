@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row app-main-margin">
-        <div class="col-lg-12">
+        <div class="col-12">
             <div class="card">
                 <div class="card-header bg-white">
                     <h5 class=" text-uppercase">
@@ -10,13 +10,17 @@
                         Comptes
                     </h5>
                 </div>
-                <div class="card-body">
-                    <small class="app-main-color">{{ $accounts->count() }} Comptes au total</small>
-                    <br>
-                    <a href="{{ route_manager('accounts.create') }}" class="btn app-main-btn">
-                        <span class="oi oi-plus"></span>&nbsp;
-                        Ajouter un compte
-                    </a>
+                <div class="card-body form-inline">
+                    <div class="col-sm-5">
+                        <a href="{{ route_manager('accounts.create') }}" class="btn app-main-btn">
+                            <span class="oi oi-plus"></span>&nbsp;
+                            Ajouter un compte
+                        </a><br>
+                        <small class="app-main-color">{{ $accounts->count() }} Comptes au total</small>
+                    </div>
+                    <div class="col-sm-7">
+                        @include('partials.app.pagination')
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,7 +54,7 @@
                 </div>
             </div>
         @empty
-            <div class="col-lg-12 text-white">
+            <div class="col-12 text-white">
                 <div class="alert bg-secondary" role="alert">
                     <span class="oi oi-warning"></span>&nbsp;
                     Pas de compte pour le moment

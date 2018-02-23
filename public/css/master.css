@@ -17,3 +17,13 @@
 .app-main-border, .app-main-dropdown { border: 1px solid #b482e6; }
 .app-main-bg, .app-main-btn, .app-main-dropdown:hover, .app-main-dropdown-item:hover, .app-main-dropdown:focus { background-color: #b482e6; }
 .app-main-btn:hover, .app-main-bg, .app-main-btn, .app-main-dropdown:hover, .app-main-dropdown-item:hover, .app-main-dropdown:focus { color: #ffffff; }
+
+.app-main-pagination, .app-main-pagination:hover {
+    color:  #b482e6;
+}
+
+.app-main-pagination-active, .app-main-pagination-active:hover {
+    background-color:  #b482e6;
+    color: #ffffff;
+}
+
