@@ -49,7 +49,8 @@
                         </p>
                     </div>
                     <div class="card-footer text-right {{ $account->color }} {{ $account->color == 'bg-light' ? 'text-dark' : 'text-white' }}">
-                        Solde: <strong>{{ $account->amount }}</strong> FCFA
+                        Solde: <strong>{{ $account->amount }}</strong> FCFA <br>
+                        <small>Seuil: <strong>{{ $account->amount }}</strong> FCFA</small>
                     </div>
                 </div>
             </div>
@@ -105,3 +106,5 @@
 @push('page')
     @include('partials.popup-alert')
 @endpush
+
+{{--TODO: Ajouter une ligne seuil sur les comptes--}}

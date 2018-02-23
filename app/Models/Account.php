@@ -17,10 +17,14 @@ class Account extends Model
 
     /**
      * Honer of the account
-     * @return App\Models\User
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
     {
     	return $this->belongsTo('App\Models\User');
     }
+
+    /*
+     * TODO: Gerer l'alerte du seuil des que celui-ci est atteint
+     */
 }
