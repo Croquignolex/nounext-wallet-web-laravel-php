@@ -1,1 +1,1 @@
-<a class="dropdown-item" href="#">Notification {{ $notification }}</a>
+<a class="dropdown-item app-main-dropdown-item" href="#">Notification {{ $notification }}</a>

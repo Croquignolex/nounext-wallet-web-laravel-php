@@ -10,6 +10,20 @@
     cursor: progress;
 }
 
-.app-main-bg { background-color: #28a745; color: #FFFFFF; }
-.app-main-color { color: #28a745; }
-.app-main-border { border: 1px solid #28a745; }
+.app-main-margin { margin-bottom: 10px; }
+.app-main-dropdown { background-color: #ffffff; }
+.app-main-btn:hover { background-color: #966fbd; }
+.app-main-color, .app-main-dropdown { color: #b482e6; }
+.app-main-border, .app-main-dropdown { border: 1px solid #b482e6; }
+.app-main-bg, .app-main-btn, .app-main-dropdown:hover, .app-main-dropdown-item:hover, .app-main-dropdown:focus { background-color: #b482e6; }
+.app-main-btn:hover, .app-main-bg, .app-main-btn, .app-main-dropdown:hover, .app-main-dropdown-item:hover, .app-main-dropdown:focus { color: #ffffff; }
+
+.app-main-pagination, .app-main-pagination:hover {
+    color:  #b482e6;
+}
+
+.app-main-pagination-active, .app-main-pagination-active:hover {
+    background-color:  #b482e6;
+    color: #ffffff;
+}
+

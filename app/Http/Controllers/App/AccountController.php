@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\App;
 
 use App\Models\User;
 use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AccountRequest; 
 use Illuminate\Validation\ValidationException;
 
@@ -35,12 +36,13 @@ class AccountController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param AccountRequest $request
      * @return \Illuminate\Http\Response
+     * @throws ValidationException
      */
     public function store(AccountRequest $request)
     {  
-        if($this->accountExiste($request->name)) $this->returnError(); 
+        if($this->accountExist($request->name)) $this->returnError();
         else
         {
             $user = User::find(Auth::user()->id);
@@ -58,7 +60,8 @@ class AccountController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param $language
+     * @param Account $account
      * @return \Illuminate\Http\Response
      */
     public function show($language, Account $account)
@@ -69,7 +72,8 @@ class AccountController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param $language
+     * @param Account $account
      * @return \Illuminate\Http\Response
      */
     public function edit($language, Account $account)
@@ -80,13 +84,15 @@ class AccountController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param AccountRequest $request
+     * @param $language
+     * @param Account $account
      * @return \Illuminate\Http\Response
+     * @throws ValidationException
      */
     public function update(AccountRequest $request, $language, Account $account)
     {
-        if($this->accountExiste($request->name, 1)) $this->returnError();
+        if($this->accountExist($request->name, 1)) $this->returnError();
         else
         { 
             $account->update($request->all());
@@ -103,8 +109,10 @@ class AccountController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param $language
+     * @param Account $account
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy($language, Account $account)
     {
@@ -119,20 +127,22 @@ class AccountController extends Controller
 
     /**
      * Check if the account already exist
-     * 
+     *
      * @param  string $name
+     * @param int $offset
      * @return bool
      */
-    private function accountExiste($name, $offset = 0)
+    private function accountExist($name, $offset = 0)
     {
         if(Account::where('name', $name)->count() > $offset) return true;
         else return false; 
-    } 
+    }
 
     /**
      * Return to form with error
-     * 
-     * @return ValidationException
+     *
+     * @return void
+     * @throws ValidationException
      */
     private function returnError()
     {

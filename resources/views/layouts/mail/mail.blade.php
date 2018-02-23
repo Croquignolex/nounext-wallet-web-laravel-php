@@ -13,8 +13,8 @@
     </head>
     
     <body>  
-        <div class="card border-success">
-            <div class="card-header text-center app-main-bg"><h4 class=" text-uppercase">{{ config('app.name')}}</h4></div>
+        <div class="card app-main-border">
+            <div class="card-header text-center app-main-bg"><h4 class=" text-uppercase">{{ config('company.name') }} <strong>{{ config('app.name')}}</strong></h4></div>
             <div class="card-body"> 
                 @yield('body')
             </div>
