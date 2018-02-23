@@ -4,23 +4,32 @@ namespace App\Http\Controllers\App;
 
 use App\Models\User;
 use App\Models\Account;
+use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AccountRequest; 
+use App\Http\Requests\AccountRequest;
 use Illuminate\Validation\ValidationException;
 
 class AccountController extends Controller
-{   
+{
+
+    use PaginationTrait;
+
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
+     * @param $language
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, $language)
     {
         $accounts = User::find(Auth::user()->id)->accounts->sortByDesc('updated_at');
-        return view('account.index', compact('accounts'));
+
+        $this->parginate($request, $accounts);
+        //dd($this->paginationTools);
+        return view('account.index', ['paginationTools' => $this->paginationTools]);
     }
 
     /**

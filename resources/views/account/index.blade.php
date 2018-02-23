@@ -16,10 +16,10 @@
                             <span class="oi oi-plus"></span>&nbsp;
                             Ajouter un compte
                         </a><br>
-                        <small class="app-main-color">{{ $accounts->count() }} Comptes au total</small>
+                        <small class="app-main-color">{{ $paginationTools->itemsNumber }} Comptes au total</small>
                     </div>
                     <div class="col-sm-7">
-                        @include('partials.app.pagination')
+                        @include('partials.app.pagination', ['url' => route_manager('accounts.index') . '?page='])
                     </div>
                 </div>
             </div>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="row app-main-margin">
-        @forelse ($accounts as $account)
+        @forelse ($paginationTools->displayItems as $account)
             <div class="col-md-6 col-lg-4 app-main-margin">
                 <div class="card">
                     <div class="card-header {{ $account->color }}">
@@ -63,7 +63,7 @@
         @endforelse
     </div><!-- /.row -->
 
-    @foreach ($accounts as $account)
+    @foreach ($paginationTools->displayItems as $account)
         <!-- Delete modal -->
         <div class="modal fade" id="delete-modal-{{ $account->id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel-{{ $account->id }}" aria-hidden="true">
             <div class="modal-dialog" role="document">
