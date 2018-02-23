@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Auth;
 
 use Exception;
 use App\Models\User;
 use App\Traits\TokenTrait;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ConfirmedController extends Controller
 {  

@@ -1,9 +1,9 @@
 <nav class="navbar navbar-default">
     <div class="navbar-header">
-        <button type="button" id="sidebarCollapse" class="navbar-toggler">
-            <span></span>
-            <span></span>
-            <span></span>
+        <button type="button" id="sidebarCollapse" class="navbar-toggler app-main-border">
+            <span class="app-main-bg"></span>
+            <span class="app-main-bg"></span>
+            <span class="app-main-bg"></span>
         </button>
     </div>
 

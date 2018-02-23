@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'recherche', 'breadcrumb' => ['recherche']])
+@extends('layouts.app.app', ['page' => 'recherche', 'breadcrumb' => ['recherche']])
 
 @section('content') 
     Recherche

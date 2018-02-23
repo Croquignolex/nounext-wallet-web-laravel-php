@@ -31,8 +31,9 @@
         </div>
         
         <div class="form-group">
-            <button type="submit" class="btn app-main-bg btn-block" id="resetPassword">
-                <span class="oi oi-reload"></span> Réinitialiser
+            <button type="submit" class="btn app-main-btn btn-block" id="resetPassword">
+                <span class="oi oi-reload"></span>&nbsp;
+                Réinitialiser
             </button>
         </div>
 

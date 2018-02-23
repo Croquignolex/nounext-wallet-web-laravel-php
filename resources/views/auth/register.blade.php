@@ -40,8 +40,9 @@
         </div>  
 
         <div class="form-group">
-            <button type="submit" class="btn app-main-bg btn-block" id="register">
-                <span class="oi oi-person"></span> Inscription
+            <button type="submit" class="btn app-main-btn btn-block" id="register">
+                <span class="oi oi-person"></span>&nbsp;
+                Inscription
             </button>
         </div>
 

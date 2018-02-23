@@ -129,8 +129,7 @@ class ResetPasswordController extends Controller
     /**
      * Reset the password for the given token.
      *
-     * @param  array  $credentials
-     * @param  \Closure  $callback
+     * @param  array $credentials
      * @return mixed
      */
     protected function resetProcess(array $credentials)

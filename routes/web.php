@@ -24,7 +24,7 @@ Route::get('{language}/login', 'Auth\LoginController@showLoginForm')
 Route::post('{language}/register', 'Auth\RegisterController@register');
 Route::get('{language}/register', 'Auth\RegisterController@showRegistrationForm')
     ->name('register');
-Route::get('{language}/confirmed/{token}/{email}', 'ConfirmedController')
+Route::get('{language}/confirmed/{token}/{email}', 'Auth\ConfirmedController')
     ->name('confirmed');
 
 //--Password reset routes
@@ -41,20 +41,20 @@ Route::get('{language?}', 'HomeController')->name('home');
 
 Route::group(['middleware' => 'user'], function(){
 	//--Dashboard routeuser
-	Route::get('{language?}/dashboard', 'DashboardController')
+	Route::get('{language?}/dashboard', 'App\DashboardController')
 	    ->name('dashboard');
 
 	//--Search route
-	Route::post('{language?}/search', 'SearchController')
+	Route::post('{language?}/search', 'App\SearchController')
 	    ->name('search');
 
 	//--Account route
-	Route::resource('{language?}/accounts', 'AccountController');
+	Route::resource('{language?}/accounts', 'App\AccountController');
 
 	//--Transaction route
-	Route::resource('{language?}/transactions', 'TransactionController');
+	Route::resource('{language?}/transactions', 'App\TransactionController');
 
 	//--Configuration route
-	Route::get('{language?}/configurations', 'ConfigurationsController@index')->name('configuration');
-	Route::post('{language?}/configurations', 'ConfigurationsController@update');
+	Route::get('{language?}/configurations', 'App\ConfigurationsController@index')->name('configuration');
+	Route::post('{language?}/configurations', 'App\ConfigurationsController@update');
 }); 
