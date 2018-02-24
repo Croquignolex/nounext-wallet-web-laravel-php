@@ -72,6 +72,6 @@ class User extends Authenticatable
      */
     public function getName()
     {
-        return ucfirst($this->name);
+        return strtoupper($this->name);
     }
 }

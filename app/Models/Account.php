@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\App;
 
 class Account extends Model
 {
@@ -45,7 +46,7 @@ class Account extends Model
      */
     public function getAmount()
     {
-        return 'Solde: <strong>' . $this->amount . '</strong> FCFA';
+        return 'Solde: <strong>' . number_format($this->amount, 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . '</strong> FCFA';
     }
 
     /**
@@ -53,7 +54,7 @@ class Account extends Model
      */
     public function getThreshold()
     {
-        return 'Seuil: <strong>' . $this->threshold . '</strong> FCFA';
+        return 'Seuil: <strong>' . number_format($this->threshold, 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . '</strong> FCFA';
     }
 
     /**
@@ -62,5 +63,16 @@ class Account extends Model
     public function getName()
     {
         return strtoupper($this->name);
+    }
+
+    /**
+     * @return array
+     */
+    private function getFormaters()
+    {
+        if(App::getLocale() == 'fr')
+            return ['decimal' => ',', 'separator' => '.'];
+        else if (App::getLocale() == 'en')
+            return ['decimal' => '.', 'separator' => ','];
     }
 }

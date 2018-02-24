@@ -1,4 +1,4 @@
-@if($paginationTools->pagesNumber != 1)
+@if($paginationTools->pagesNumber > 0)
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-end">
             @if($paginationTools->previousPage != 0)
@@ -40,7 +40,7 @@
             @endif
         </ul>
         <div class="pagination justify-content-end">
-            <small class="app-main-color">Page <strong class="badge badge-dark">{{ $paginationTools->currentPage }}</strong> sur <strong class="badge badge-dark">{{ $paginationTools->pagesNumber }}</strong></small>
+            <small class="app-main-color">Page <strong class="badge badge-secondary">{{ $paginationTools->currentPage }}</strong> sur <strong class="badge badge-secondary">{{ $paginationTools->pagesNumber }}</strong></small>
         </div>
     </nav>
 @endif

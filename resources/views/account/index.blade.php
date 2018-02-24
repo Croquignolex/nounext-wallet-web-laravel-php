@@ -36,7 +36,7 @@
                     <div class="card-body">
                         <p>{{ $account->description }}</p>
                         <p class="text-right">
-                            <small class="badge {{ $account->color }} {{ $account->color == 'bg-light' ? 'text-dark' : 'text-white' }}" >{!! $account->getAmount() !!}</small>
+                            <small class="badge {{ $account->color }} {{ $account->color == 'bg-light' ? 'text-dark' : 'text-white' }}" >{!! $account->getThreshold() !!}</small>
                             <br>
                             <a href="{{ route_manager('accounts.edit', ['account' => $account]) }}" class="btn btn-warning text-white" title="Modifier">
                                 <span class="oi oi-pencil"></span>
