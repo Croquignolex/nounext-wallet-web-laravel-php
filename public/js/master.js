@@ -13,6 +13,10 @@ function notification(notificationTitle, notificationMessage, notificationType, 
         animate: {
             enter: 'animated ' + notificationEnter,
             exit: 'animated ' + notificationExit
+        },
+        placement: {
+            from: 'top',
+            align: 'center'
         }
     });
 }
