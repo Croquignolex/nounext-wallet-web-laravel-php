@@ -29,6 +29,9 @@ class User extends Authenticatable
         'password', 'remember_token', 'confirmed', 'token'
     ];
 
+    /**
+     *
+     */
     protected static function boot()
     {
         parent::boot();
@@ -42,7 +45,10 @@ class User extends Authenticatable
             $user->token = User::getUniqueToken(); 
         });
     }
- 
+
+    /**
+     * @return string
+     */
     public static function getUniqueToken()
     {
         $token = Str::random(64);
@@ -53,6 +59,9 @@ class User extends Authenticatable
         return $token;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function accounts()
     {
         return $this->hasMany('App\Models\Account');

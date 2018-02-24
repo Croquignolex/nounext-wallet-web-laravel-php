@@ -14,7 +14,7 @@ trait PaginationTrait
      * @param int $itemsPerPage
      * @param int $itemsBeforeAndAfter
      */
-    private function parginate(Request $request, $items, $itemsPerPage = 3, $itemsBeforeAndAfter = 2)
+    private function parginate(Request $request, $items, $itemsPerPage = 6, $itemsBeforeAndAfter = 2)
     {
         $this->paginationTools = new PaginationTools();
         $this->paginationTools->nextPage = 0;

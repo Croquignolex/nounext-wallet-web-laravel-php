@@ -12,8 +12,24 @@ class Account extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'color', 'amount', 'user_id'
+        'name', 'description', 'color', 'amount', 'threshold', 'user_id'
     ];
+
+    /**
+     *
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::updated(function ($account) {
+            if ($account->amount == $account->threshold) {
+                //--TODO: declencher la notification du seil min atteint
+            } else if ($account->amount < $account->threshold) {
+                //--TODO: declencher la notification du seil min depasse
+            }
+        });
+    }
 
     /**
      * Honer of the account
@@ -21,10 +37,6 @@ class Account extends Model
      */
     public function user()
     {
-    	return $this->belongsTo('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
-
-    /*
-     * TODO: Gerer l'alerte du seuil des que celui-ci est atteint
-     */
 }

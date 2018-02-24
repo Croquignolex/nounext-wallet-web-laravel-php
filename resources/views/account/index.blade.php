@@ -36,6 +36,8 @@
                     <div class="card-body">
                         <p>{{ $account->description }}</p>
                         <p class="text-right">
+                            <small class="badge {{ $account->color }} {{ $account->color == 'bg-light' ? 'text-dark' : 'text-white' }}" >Seuil: <strong>{{ $account->amount }}</strong> FCFA</small>
+                            <br>
                             <a href="{{ route_manager('accounts.edit', ['account' => $account]) }}" class="btn btn-warning text-white" title="Modifier">
                                 <span class="oi oi-pencil"></span>
                             </a>
@@ -49,8 +51,7 @@
                         </p>
                     </div>
                     <div class="card-footer text-right {{ $account->color }} {{ $account->color == 'bg-light' ? 'text-dark' : 'text-white' }}">
-                        Solde: <strong>{{ $account->amount }}</strong> FCFA <br>
-                        <small>Seuil: <strong>{{ $account->amount }}</strong> FCFA</small>
+                        Solde: <strong>{{ $account->amount }}</strong> FCFA
                     </div>
                 </div>
             </div>
@@ -106,5 +107,3 @@
 @push('page')
     @include('partials.popup-alert')
 @endpush
-
-{{--TODO: Ajouter une ligne seuil sur les comptes--}}

@@ -19,6 +19,7 @@ class CreateAccountsTable extends Migration
             $table->text('description');
             $table->string('color');
             $table->integer('amount');
+            $table->integer('threshold');
             $table->integer('user_id')->unsigned();
             $table->timestamps();
 
@@ -38,8 +39,4 @@ class CreateAccountsTable extends Migration
     {
         Schema::dropIfExists('accounts');
     }
-
-    /*
-     * TODO: Modifier la migration et y ajouter un champ pour le seuil
-     */
 }
