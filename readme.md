@@ -10,3 +10,4 @@ wallet is a budget manager app
 # (master) follow refractoring
 # (master) follow account
 # (master) follow refractoring
+# (master) follow account
