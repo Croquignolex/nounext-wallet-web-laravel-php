@@ -9,7 +9,7 @@
 
     <div class="form-inline">
         <div class="h4 app-main-color font-weight-bold">
-            <a href="{{ route_manager('configuration') }}">{{ title_case(Auth::user()->name) }}</a>
+            <a href="{{ route_manager('configuration') }}">{{ Auth::user()->getName() }}</a>
         </div>
         &nbsp;&nbsp;&nbsp;
         @include('partials.app.notification.notification')

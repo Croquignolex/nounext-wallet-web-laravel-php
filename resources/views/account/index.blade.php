@@ -31,12 +31,12 @@
             <div class="col-md-6 col-lg-4 app-main-margin">
                 <div class="card">
                     <div class="card-header {{ $account->color }}">
-                        <strong class="text-uppercase {{ $account->color == 'bg-light' ? 'text-dark' : 'text-white' }}">{{ $account->name }}</strong>
+                        <strong class="{{ $account->color == 'bg-light' ? 'text-dark' : 'text-white' }}">{{ $account->getName() }}</strong>
                     </div>
                     <div class="card-body">
                         <p>{{ $account->description }}</p>
                         <p class="text-right">
-                            <small class="badge {{ $account->color }} {{ $account->color == 'bg-light' ? 'text-dark' : 'text-white' }}" >Seuil: <strong>{{ $account->amount }}</strong> FCFA</small>
+                            <small class="badge {{ $account->color }} {{ $account->color == 'bg-light' ? 'text-dark' : 'text-white' }}" >{!! $account->getAmount() !!}</small>
                             <br>
                             <a href="{{ route_manager('accounts.edit', ['account' => $account]) }}" class="btn btn-warning text-white" title="Modifier">
                                 <span class="oi oi-pencil"></span>
@@ -51,7 +51,7 @@
                         </p>
                     </div>
                     <div class="card-footer text-right {{ $account->color }} {{ $account->color == 'bg-light' ? 'text-dark' : 'text-white' }}">
-                        Solde: <strong>{{ $account->amount }}</strong> FCFA
+                        {!! $account->getAmount() !!}
                     </div>
                 </div>
             </div>
@@ -72,14 +72,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="myModalLabel-{{ $account->id }}">
-                            Supprimer le compte <strong>{{ $account->name }}</strong>.
+                            Supprimer le compte <strong>{{ $account->getName() }}</strong>.
                         </h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body {{ $account->color }} {{ $account->color == 'bg-light' ? 'text-dark' : 'text-white' }}">
-                        A la suppression de <em>{{ $account->name }}</em>,
+                        A la suppression de <em>{{ $account->getName() }}</em>,
                         toutes les transactions et données liées à ce compte seront perdus,
                         êtes vous sûr?
                     </div>

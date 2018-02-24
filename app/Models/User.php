@@ -66,4 +66,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Account');
     }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return ucfirst($this->name);
+    }
 }

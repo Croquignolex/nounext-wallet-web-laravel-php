@@ -39,4 +39,28 @@ class Account extends Model
     {
         return $this->belongsTo('App\Models\User');
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAmount()
+    {
+        return 'Solde: <strong>' . $this->amount . '</strong> FCFA';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getThreshold()
+    {
+        return 'Seuil: <strong>' . $this->threshold . '</strong> FCFA';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return strtoupper($this->name);
+    }
 }
