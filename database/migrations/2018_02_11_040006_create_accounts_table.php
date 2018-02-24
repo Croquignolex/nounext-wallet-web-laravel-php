@@ -38,4 +38,8 @@ class CreateAccountsTable extends Migration
     {
         Schema::dropIfExists('accounts');
     }
+
+    /*
+     * TODO: Modifier la migration et y ajouter un champ pour le seuil
+     */
 }
