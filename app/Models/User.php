@@ -68,6 +68,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function notifications()
+    {
+        return $this->hasMany('App\Models\Notification');
+    }
+
+    /**
      * @return mixed
      */
     public function getName()
