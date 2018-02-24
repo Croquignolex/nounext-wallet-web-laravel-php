@@ -15,6 +15,10 @@
         @include('partials.input', ['placeholder' => 'Montant initial', 'type' => 'number',
             'name' => 'amount', 'id' => 'amount', 'value' => $account->amount ?? old('amount')])
 
+        @include('partials.input', ['placeholder' => 'Seuil minimum', 'type' => 'number',
+            'name' => 'threshold', 'id' => 'threshold', 'value' => $account->threshold ?? old('threshold')])
+
+
         <div class="form-group text-center">
             @include('partials.radio', ['name' => 'color', 'value' => 'bg-light', 'badge' => 'badge-light',
             'label' => 'Blanc', 'check' =>  $account->color == 'bg-light' ? 'checked' : ''])

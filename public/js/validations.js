@@ -31,6 +31,12 @@ $(function () {
         else setSuccessIndicator(element);
     });
 
+    $('#threshold').change(function () {
+        var element = $(this);
+        if(!element.val().match(/^[0-9]+$/)) setErrorIndicator(element);
+        else setSuccessIndicator(element);
+    });
+
     $('#password').change(function () {
         var element = $(this);
         minMaxValidation(element.val().length, 6, 255, element);
@@ -64,6 +70,12 @@ $(function () {
     //--Validations
     $('#amount').keyup(function () {
         var element = $(this);  
+        if(!element.val().match(/^[0-9]+$/)) setErrorIndicator(element);
+        else setSuccessIndicator(element);
+    });
+
+    $('#threshold').keyup(function () {
+        var element = $(this);
         if(!element.val().match(/^[0-9]+$/)) setErrorIndicator(element);
         else setSuccessIndicator(element);
     });
@@ -183,7 +195,8 @@ $(function () {
  
         var name = $('#name');
         var description = $('#description'); 
-        var amout = $('#amount'); 
+        var amount = $('#amount');
+        var threshold = $('#threshold');
         var nameLength = name.val().length; 
         var descriptionLength = description.val().length; 
 
@@ -195,10 +208,14 @@ $(function () {
             setErrorIndicator(description);
             isValid = false; 
         }
-        if(!amout.val().match(/^[0-9]+$/)){ 
-            setErrorIndicator(amout);
+        if(!amount.val().match(/^[0-9]+$/)){
+            setErrorIndicator(amount);
             isValid = false; 
-        } 
+        }
+        if(!threshold.val().match(/^[0-9]+$/)){
+            setErrorIndicator(threshold);
+            isValid = false;
+        }
 
         return isValid;
     });
@@ -208,7 +225,8 @@ $(function () {
  
         var name = $('#name');
         var description = $('#description'); 
-        var amout = $('#amount'); 
+        var amount = $('#amount');
+        var threshold = $('#threshold');
         var nameLength = name.val().length; 
         var descriptionLength = description.val().length; 
 
@@ -220,10 +238,14 @@ $(function () {
             setErrorIndicator(description);
             isValid = false; 
         }
-        if(!amout.val().match(/^[0-9]+$/)){ 
-            setErrorIndicator(amout);
+        if(!amount.val().match(/^[0-9]+$/)){
+            setErrorIndicator(amount);
             isValid = false; 
-        } 
+        }
+        if(!threshold.val().match(/^[0-9]+$/)){
+            setErrorIndicator(threshold);
+            isValid = false;
+        }
 
         return isValid;
     });
