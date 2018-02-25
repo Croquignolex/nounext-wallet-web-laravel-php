@@ -25,11 +25,11 @@ class AccountController extends Controller
      */
     public function index(Request $request, $language)
     {
-        $accounts = User::find(Auth::user()->id)->accounts->sortByDesc('updated_at');
+        $accounts = Auth::user()->accounts->sortByDesc('updated_at');
 
         $this->parginate($request, $accounts);
         //dd($this->paginationTools);
-        return view('account.index', ['paginationTools' => $this->paginationTools]);
+        return view('accounts.index', ['paginationTools' => $this->paginationTools]);
     }
 
     /**
@@ -39,7 +39,7 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('account.create');
+        return view('accounts.create');
     }
 
     /**
@@ -74,7 +74,7 @@ class AccountController extends Controller
      */
     public function show($language, Account $account)
     {
-        return view('account.show', compact('account'));
+        return view('accounts.show', compact('account'));
     }
 
     /**
@@ -86,7 +86,7 @@ class AccountController extends Controller
      */
     public function edit($language, Account $account)
     { 
-        return view('account.edit', compact('account'));
+        return view('accounts.edit', compact('account'));
     }
 
     /**
@@ -168,4 +168,8 @@ class AccountController extends Controller
     {
         return route_manager('accounts.index');
     }
+
+    /*
+     * TODO: in account delete, remove the notification if exist
+     */
 }

@@ -1,7 +1,7 @@
 <div class="dropdown-item app-main-dropdown-item app-main-border-top" title="{!! $notification->details !!}" data-toggle="tooltip" data-placement="bottom">
-    <a href="#" class="close" aria-label="Close">
+    <button type="button" class="close" aria-label="Close" onclick="document.getElementById('delete-notification-{{ $notification->id }}').submit();">
         <span aria-hidden="true">&times;</span>
-    </a>
+    </button>
 
     <p>
         <a href="{{ $notification->url }}" class="text-{{ $notification->color }}">
@@ -10,6 +10,11 @@
         </a><br>
         {!! text_format($notification->details, 40) !!}
     </p>
+
+    <form id="delete-notification-{{ $notification->id }}" action="{{ route_manager('notifications.destroy', [$notification]) }}" method="POST" class="hidden">
+        {{ csrf_field() }}
+        {{ method_field('DELETE') }}
+    </form>
 </div>
 
 {{--TODO: format notification created at date --}}

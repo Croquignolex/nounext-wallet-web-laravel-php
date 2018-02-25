@@ -51,14 +51,13 @@ Route::group(['middleware' => 'user'], function(){
 	//--Account route
 	Route::resource('{language?}/accounts', 'App\AccountController');
 
-	//--Transaction route
+    //--Notification route
+    Route::resource('{language?}/notifications', 'App\NotificationsController', ['only' => ['index', 'destroy']]);
+
+    //--Transaction route
 	Route::resource('{language?}/transactions', 'App\TransactionController');
 
 	//--Configuration route
 	Route::get('{language?}/configurations', 'App\ConfigurationsController@index')->name('configuration');
 	Route::post('{language?}/configurations', 'App\ConfigurationsController@update');
-
-    //--Notification route
-    Route::get('{language?}/notifications', 'App\NotificationsController@index')->name('notification.index');
-    Route::get('{language?}/notifications/remove', 'App\NotificationsController@destroy')->name('notification.destroy');
 });
