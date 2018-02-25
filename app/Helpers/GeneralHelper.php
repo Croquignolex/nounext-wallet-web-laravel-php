@@ -48,3 +48,20 @@ if(!function_exists('flash_message'))
         session()->flash('notification.animate.enter', $enter); 
     }
 }
+
+if(!function_exists('text_format'))
+{
+
+    /**
+     * @param $text
+     * @param $maxCharacters
+     * @return string
+     */
+    function text_format($text, $maxCharacters)
+    {
+        if(strlen($text) <= $maxCharacters)
+            return $text;
+        else
+            return substr($text, 0, $maxCharacters) . '...';
+    }
+}

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Auth;
 
 class Account extends Model
 {
@@ -25,11 +26,31 @@ class Account extends Model
 
         static::updated(function ($account) {
             if ($account->amount == $account->threshold) {
-                //--TODO: declencher la notification du seil min atteint
+                Auth::user()->notifications()->create([
+                    'title' => 'Seuil atteint',
+                    'details' => 'Seuil du compte ' . $account->getName() . ' est atteint.',
+                    'icon' => 'audio',
+                    'url' => route_manager('accounts.show', ['account' => $account]),
+                    'color' => 'warning',
+                ]);
             } else if ($account->amount < $account->threshold) {
-                //--TODO: declencher la notification du seil min depasse
+                Auth::user()->notifications()->create([
+                    'title' => 'Seuil dépassé',
+                    'details' => 'Seuil du compte ' . $account->getName() . ' est dépassé de ' . $account->diff,
+                    'icon' => 'beaker',
+                    'url' => route_manager('accounts.show', ['account' => $account]),
+                    'color' => 'danger',
+                ]);
             }
         });
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDiffAttribute()
+    {
+        return number_format(( $this->threshold - $this->amount), 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . ' FCFA.';
     }
 
     /**
@@ -75,4 +96,8 @@ class Account extends Model
         else if (App::getLocale() == 'en')
             return ['decimal' => '.', 'separator' => ','];
     }
+
+    /*
+     * TODO: Gerer la devise
+     */
 }

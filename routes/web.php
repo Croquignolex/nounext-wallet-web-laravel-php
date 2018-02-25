@@ -57,4 +57,8 @@ Route::group(['middleware' => 'user'], function(){
 	//--Configuration route
 	Route::get('{language?}/configurations', 'App\ConfigurationsController@index')->name('configuration');
 	Route::post('{language?}/configurations', 'App\ConfigurationsController@update');
-}); 
+
+    //--Notification route
+    Route::get('{language?}/notifications', 'App\NotificationsController@index')->name('notification.index');
+    Route::get('{language?}/notifications/remove', 'App\NotificationsController@destroy')->name('notification.destroy');
+});

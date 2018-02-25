@@ -12,7 +12,7 @@ class Notification extends Model
      * @var array
      */
     protected $fillable = [
-
+        'title', 'details', 'icon', 'url', 'color', 'user_id'
     ];
 
     /**

@@ -8,5 +8,8 @@
     <div class="dropdown-menu" aria-labelledby="notifications">
         <div class="dropdown-header font-weight-bold app-main-color">Notification(s)</div>
         @each('partials.app.notification.notification-item', $notificationService->getNotifications(), 'notification')
+        <a class="dropdown-item app-main-dropdown-item text-center app-main-border-top" href="{{ route_manager('notification.index') }}">
+            Voir toutes les notifications
+        </a>
     </div>
 </div>

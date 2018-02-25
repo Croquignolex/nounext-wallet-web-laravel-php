@@ -17,7 +17,7 @@ class NotificationService
      */
     public function __construct()
     {
-        $this->notifications = User::find(Auth::user()->id)->notifications->sortByDesc('updated_at');
+        $this->notifications = User::find(Auth::user()->id)->notifications->sortByDesc('created_at');
         $this->notificationsNumber = $this->notifications->count();
     }
 
@@ -27,6 +27,12 @@ class NotificationService
     }
 
     public function getNotifications()
+    {
+        $this->notifications->splice(4);
+        return $this->notifications->all();
+    }
+
+    public function getAllNotifications()
     {
         return $this->notifications;
     }

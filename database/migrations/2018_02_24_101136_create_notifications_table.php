@@ -17,6 +17,7 @@ class CreateNotificationsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('details');
+            $table->text('color');
             $table->text('icon');
             $table->text('url');
             $table->integer('user_id')->unsigned();

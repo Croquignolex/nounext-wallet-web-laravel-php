@@ -54,8 +54,7 @@ class AccountController extends Controller
         if($this->accountExist($request->name)) $this->returnError();
         else
         {
-            $user = User::find(Auth::user()->id);
-            $account = $user->accounts()->create($request->input());
+            Auth::user()->accounts()->create($request->input());
 
             flash_message(
                 __('general.success'), 'Compte ajouté avec succès', 
