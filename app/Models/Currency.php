@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Notification extends Model
+class Currency extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Notification extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'details', 'icon', 'url', 'color', 'user_id'
+        'title', 'details', 'symbol', 'user_id'
     ];
 
     /**
@@ -22,8 +22,8 @@ class Notification extends Model
     {
         parent::boot();
 
-        static::creating(function($notification) {
-            $notification->viewed = false;
+        static::creating(function($currency) {
+            $currency->activated = false;
         });
     }
 

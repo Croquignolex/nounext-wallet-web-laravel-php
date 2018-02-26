@@ -2,18 +2,13 @@
 
 namespace App\Http\Controllers\App;
 
-use App\Models\User;
-use App\Models\Account;
-use App\Traits\PaginationTrait;
+use App\Models\Currency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\AccountRequest;
 use Illuminate\Validation\ValidationException;
 
-class AccountController extends Controller
+class CurrenciesController extends Controller
 {
-
     use PaginationTrait;
 
     /**
@@ -25,10 +20,10 @@ class AccountController extends Controller
      */
     public function index(Request $request, $language)
     {
-        $accounts = Auth::user()->accounts->sortByDesc('updated_at');
+        $currencies = Auth::user()->currencies->sortByDesc('updated_at');
 
-        $this->parginate($request, $accounts);
-        return view('accounts.index', ['paginationTools' => $this->paginationTools]);
+        $this->parginate($request, $currencies);
+        return view('currencies.index', ['paginationTools' => $this->paginationTools]);
     }
 
     /**
@@ -38,95 +33,95 @@ class AccountController extends Controller
      */
     public function create()
     {
-        return view('accounts.create');
+        return view('currencies.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param AccountRequest $request
+     * @param CurrencyRequest $request
      * @return \Illuminate\Http\Response
      * @throws ValidationException
      */
-    public function store(AccountRequest $request)
-    {  
-        if($this->accountExist($request->name)) $this->returnError();
+    public function store(CurrencyRequest $request)
+    {
+        if($this->currencyExist($request->title)) $this->returnError();
         else
         {
-            Auth::user()->accounts()->create($request->input());
+            Auth::user()->currencies()->create($request->input());
 
             flash_message(
-                __('general.success'), 'Compte ajouté avec succès', 
+                __('general.success'), 'Dévise ajouté avec succès',
                 'success', 'oi oi-thumb-up'
             );
 
             return redirect($this->redirectTo());
-        }  
+        }
     }
 
     /**
      * Display the specified resource.
      *
      * @param $language
-     * @param Account $account
+     * @param Currency $currency
      * @return \Illuminate\Http\Response
      */
-    public function show($language, Account $account)
+    public function show($language, Currency $currency)
     {
-        return view('accounts.show', compact('account'));
+        return view('currencies.show', compact('currency'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param $language
-     * @param Account $account
+     * @param Currency $currency
      * @return \Illuminate\Http\Response
      */
-    public function edit($language, Account $account)
-    { 
-        return view('accounts.edit', compact('account'));
+    public function edit($language, Currency $currency)
+    {
+        return view('currencies.edit', compact('currency'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param AccountRequest $request
+     * @param CurrencyRequest $request
      * @param $language
-     * @param Account $account
+     * @param Currency $currency
      * @return \Illuminate\Http\Response
      * @throws ValidationException
      */
-    public function update(AccountRequest $request, $language, Account $account)
+    public function update(CurrencyRequest $request, $language, Currency $currency)
     {
-        if($this->accountExist($request->name, 1)) $this->returnError();
+        if($this->currencyExist($request->title, 1)) $this->returnError();
         else
-        { 
-            $account->update($request->all());
+        {
+            $currency->update($request->all());
 
             flash_message(
-                __('general.success'), 'Compte modifié avec succès.', 
+                __('general.success'), 'Dévise modifié avec succès.',
                 'success', 'oi oi-thumb-up'
             );
 
             return redirect($this->redirectTo());
-        }  
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param $language
-     * @param Account $account
+     * @param Currency $currency
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function destroy($language, Account $account)
+    public function destroy($language, Currency $currency)
     {
-        $account->delete();
+        $currency->delete();
 
         flash_message(
-            'Information', 'Compte supprimé avec succès.'
+            'Information', 'Dévise supprimé avec succès.'
         );
 
         return redirect($this->redirectTo());
@@ -135,14 +130,14 @@ class AccountController extends Controller
     /**
      * Check if the account already exist
      *
-     * @param  string $name
+     * @param $title
      * @param int $offset
      * @return bool
      */
-    private function accountExist($name, $offset = 0)
+    private function currencyExist($title, $offset = 0)
     {
-        if(Account::where('name', $name)->count() > $offset) return true;
-        else return false; 
+        if(Currency::where('title', $title)->count() > $offset) return true;
+        else return false;
     }
 
     /**
@@ -154,21 +149,17 @@ class AccountController extends Controller
     private function returnError()
     {
         throw ValidationException::withMessages([
-            'name' => 'Un compte existe déjà avec ce nom',
+            'title' => 'Une dévise existe déjà avec ce titre',
         ])->status(423);
     }
 
     /**
      * Give the redirection path
-     * 
+     *
      * @return Router
      */
     private function redirectTo()
     {
-        return route_manager('accounts.index');
+        return route_manager('currencies.index');
     }
-
-    /*
-     * TODO: in account delete, remove the notification if exist
-     */
 }

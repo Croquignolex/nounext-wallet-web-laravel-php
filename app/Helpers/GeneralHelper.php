@@ -1,6 +1,5 @@
 <?php
 
-
 if(!function_exists('page_title'))
 {
     /**
@@ -63,5 +62,17 @@ if(!function_exists('text_format'))
             return $text;
         else
             return substr($text, 0, $maxCharacters) . '...';
+    }
+}
+
+if(!function_exists('currency'))
+{
+
+    /**
+     * @return string
+     */
+    function currency()
+    {
+        return App\Models\Currency::where('activated', true)->symbol;
     }
 }

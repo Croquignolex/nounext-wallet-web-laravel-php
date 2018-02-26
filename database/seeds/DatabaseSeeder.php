@@ -13,4 +13,8 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
     }
+
+    /*
+     * TODO: Ajouter les donnees par defaut dans la base de donnees
+     */
 }

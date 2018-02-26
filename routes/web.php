@@ -51,6 +51,9 @@ Route::group(['middleware' => 'user'], function(){
 	//--Account route
 	Route::resource('{language?}/accounts', 'App\AccountController');
 
+    //--Currency route
+    Route::resource('{language?}/currencies', 'App\AccountCurrencies');
+
     //--Notification route
     Route::resource('{language?}/notifications', 'App\NotificationsController', ['only' => ['index', 'destroy']]);
 

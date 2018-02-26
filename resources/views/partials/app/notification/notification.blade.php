@@ -13,3 +13,5 @@
         </a>
     </div>
 </div>
+
+{{--TODO: modifier le statut de la notification des qu'on l'a vue--}}

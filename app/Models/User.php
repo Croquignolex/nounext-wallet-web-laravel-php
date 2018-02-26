@@ -76,6 +76,14 @@ class User extends Authenticatable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function currencies()
+    {
+        return $this->hasMany('App\Models\Currency');
+    }
+
+    /**
      * @return mixed
      */
     public function getName()
