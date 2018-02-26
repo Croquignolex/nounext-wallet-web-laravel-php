@@ -141,7 +141,7 @@ class AccountController extends Controller
      */
     private function accountExist($name, $offset = 0)
     {
-        if(Account::where('name', $name)->count() > $offset) return true;
+        if(Auth::user()->accounts->where('name', $name)->count() > $offset) return true;
         else return false; 
     }
 
