@@ -17,12 +17,27 @@ $(function () {
     //-- Change validations
     $('#name').change(function () {
         var element = $(this);
-        minMaxValidation(element.val().length, 2, 255, element);
+        minMaxValidation(element.val().length, 2, 100, element);
     });
  
     $('#description').change(function () {
         var element = $(this);
         minMaxValidation(element.val().length, 2, 255, element);
+    });
+
+    $('#title').change(function () {
+        var element = $(this);
+        minMaxValidation(element.val().length, 2, 100, element);
+    });
+
+    $('#details').change(function () {
+        var element = $(this);
+        minMaxValidation(element.val().length, 2, 255, element);
+    });
+
+    $('#symbol').change(function () {
+        var element = $(this);
+        minMaxValidation(element.val().length, 1, 5, element);
     });
  
     $('#amount').change(function () {
@@ -59,12 +74,27 @@ $(function () {
     //--Keyup validations 
     $('#name').keyup(function () {
         var element = $(this);
-        minMaxValidation(element.val().length, 2, 255, element);
+        minMaxValidation(element.val().length, 2, 100, element);
     });
  
     $('#description').keyup(function () {
         var element = $(this);
         minMaxValidation(element.val().length, 2, 255, element);
+    });
+
+    $('#title').keyup(function () {
+        var element = $(this);
+        minMaxValidation(element.val().length, 2, 100, element);
+    });
+
+    $('#details').keyup(function () {
+        var element = $(this);
+        minMaxValidation(element.val().length, 2, 255, element);
+    });
+
+    $('#symbol').keyup(function () {
+        var element = $(this);
+        minMaxValidation(element.val().length, 1, 5, element);
     });
 
     //--Validations
@@ -200,7 +230,7 @@ $(function () {
         var nameLength = name.val().length; 
         var descriptionLength = description.val().length; 
 
-        if(nameLength < 2 || nameLength > 255) {  
+        if(nameLength < 2 || nameLength > 100) {
             setErrorIndicator(name);
             isValid = false; 
         }
@@ -230,7 +260,7 @@ $(function () {
         var nameLength = name.val().length; 
         var descriptionLength = description.val().length; 
 
-        if(nameLength < 2 || nameLength > 255) {  
+        if(nameLength < 2 || nameLength > 100) {
             setErrorIndicator(name);
             isValid = false; 
         }
@@ -249,4 +279,60 @@ $(function () {
 
         return isValid;
     });
+
+    $('#add_currency').click(function () {
+        var isValid = true;
+
+        var title = $('#title');
+        var details = $('#details');
+        var symbol = $('#symbol');
+        var titleLength = title.val().length;
+        var detailsLength = details.val().length;
+        var symbolLength = symbol.val().length;
+
+        if(titleLength < 2 || titleLength > 100) {
+            setErrorIndicator(title);
+            isValid = false;
+        }
+        if(detailsLength < 2 || detailsLength > 255) {
+            setErrorIndicator(details);
+            isValid = false;
+        }
+        if(symbolLength < 2 || symbolLength > 255) {
+            setErrorIndicator(symbol);
+            isValid = false;
+        }
+
+        return isValid;
+    });
+
+    $('#update_currency').click(function () {
+        var isValid = true;
+
+        var title = $('#title');
+        var details = $('#details');
+        var symbol = $('#symbol');
+        var titleLength = title.val().length;
+        var detailsLength = details.val().length;
+        var symbolLength = symbol.val().length;
+
+        if(titleLength < 2 || titleLength > 100) {
+            setErrorIndicator(title);
+            isValid = false;
+        }
+        if(detailsLength < 2 || detailsLength > 255) {
+            setErrorIndicator(details);
+            isValid = false;
+        }
+        if(symbolLength < 2 || symbolLength > 255) {
+            setErrorIndicator(symbol);
+            isValid = false;
+        }
+
+        return isValid;
+    });
 });
+
+/*
+ TODO: reduire le code JS et creant les fonctions
+ */

@@ -51,10 +51,16 @@ Route::group(['middleware' => 'user'], function(){
 	//--Account route
 	Route::resource('{language?}/accounts', 'App\AccountController');
 
-	//--Transaction route
+    //--Currency route
+    Route::resource('{language?}/currencies', 'App\AccountCurrencies');
+
+    //--Notification route
+    Route::resource('{language?}/notifications', 'App\NotificationsController', ['only' => ['index', 'destroy']]);
+
+    //--Transaction route
 	Route::resource('{language?}/transactions', 'App\TransactionController');
 
 	//--Configuration route
 	Route::get('{language?}/configurations', 'App\ConfigurationsController@index')->name('configuration');
 	Route::post('{language?}/configurations', 'App\ConfigurationsController@update');
-}); 
+});

@@ -8,13 +8,12 @@
     </div>
 
     <div class="form-inline">
-        <div class="h4 app-main-color font-weight-bold">
-            <a href="{{ route_manager('configuration') }}">{{ Auth::user()->getName() }}</a>
-        </div>
-        &nbsp;&nbsp;&nbsp;
         @include('partials.app.notification.notification')
         &nbsp;&nbsp;&nbsp;
         @include('partials.language.language')
         &nbsp;&nbsp;&nbsp;
+        <div class="h4 app-main-color font-weight-bold">
+            <a href="{{ route_manager('configuration') }}">{{ Auth::user()->getName() }}</a>
+        </div>
     </div>
 </nav>

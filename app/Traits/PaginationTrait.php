@@ -41,6 +41,8 @@ trait PaginationTrait
 
         if($this->paginationTools->currentPage != $this->paginationTools->pagesNumber)
             $this->paginationTools->nextPage = $this->paginationTools->currentPage + 1;
+
+
     }
 }
 

@@ -1,6 +1,5 @@
 <?php
 
-
 if(!function_exists('page_title'))
 {
     /**
@@ -46,5 +45,34 @@ if(!function_exists('flash_message'))
         session()->flash('notification.message', $message); 
         session()->flash('notification.animate.exit', $exit);
         session()->flash('notification.animate.enter', $enter); 
+    }
+}
+
+if(!function_exists('text_format'))
+{
+
+    /**
+     * @param $text
+     * @param $maxCharacters
+     * @return string
+     */
+    function text_format($text, $maxCharacters)
+    {
+        if(strlen($text) <= $maxCharacters)
+            return $text;
+        else
+            return substr($text, 0, $maxCharacters) . '...';
+    }
+}
+
+if(!function_exists('currency'))
+{
+
+    /**
+     * @return string
+     */
+    function currency()
+    {
+        return App\Models\Currency::where('activated', true)->symbol;
     }
 }

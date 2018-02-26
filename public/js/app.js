@@ -4,3 +4,11 @@ $(document).ready(function () {
         $(this).toggleClass('active');
     });
 });
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
+$(function () {
+    $('[data-toggle="popover"]').popover()
+})
