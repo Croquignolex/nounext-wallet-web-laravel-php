@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Services\NotificationService;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use App\Models\Notification;
 use App\Traits\PaginationTrait;
@@ -11,6 +13,11 @@ use Illuminate\Support\Facades\Auth;
 class NotificationsController extends Controller
 {
     use PaginationTrait;
+
+    public function __construct()
+    {
+        $this->middleware('ajax', ['only' => 'viewed']);
+    }
 
     /**
      * Display a listing of the resource.
@@ -40,5 +47,19 @@ class NotificationsController extends Controller
     {
         $notification->delete();
         return back();
+    }
+
+    public function viewed($language)
+    {
+        $notificationService = new NotificationService;
+        $notifications = $notificationService->getNotifications();
+
+        foreach ($notifications as $notification)
+        {
+            $notification->viewed = true;
+            $notification->save();
+        }
+
+        return response()->json();
     }
 }

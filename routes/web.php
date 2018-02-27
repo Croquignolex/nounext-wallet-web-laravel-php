@@ -52,10 +52,11 @@ Route::group(['middleware' => 'user'], function(){
 	Route::resource('{language?}/accounts', 'App\AccountController');
 
     //--Currency route
-    Route::resource('{language?}/currencies', 'App\AccountCurrencies');
+    Route::resource('{language?}/currencies', 'App\CurrenciesController');
 
     //--Notification route
     Route::resource('{language?}/notifications', 'App\NotificationsController', ['only' => ['index', 'destroy']]);
+    Route::get('{language?}/notifications/viewed', 'App\NotificationsController@viewed')->name('viewed');
 
     //--Transaction route
 	Route::resource('{language?}/transactions', 'App\TransactionController');

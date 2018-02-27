@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\App;
 
+use App\Http\Controllers\Controller;
 use App\Models\Currency;
+use App\Traits\PaginationTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
