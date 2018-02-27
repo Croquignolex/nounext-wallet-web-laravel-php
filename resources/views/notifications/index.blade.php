@@ -103,5 +103,3 @@
 @push('page')
     @include('partials.popup-alert')
 @endpush
-
-{{--TODO: Liste des notifications et marquer vue--}}
