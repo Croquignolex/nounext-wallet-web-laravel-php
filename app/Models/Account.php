@@ -50,7 +50,7 @@ class Account extends Model
      */
     public function getDiffAttribute()
     {
-        return number_format(( $this->threshold - $this->amount), 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . ' FCFA.';
+        return number_format(( $this->threshold - $this->amount), 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . ' ' .currency();
     }
 
     /**
@@ -67,7 +67,7 @@ class Account extends Model
      */
     public function getAmount()
     {
-        return 'Solde: <strong>' . number_format($this->amount, 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . '</strong> FCFA';
+        return 'Solde: <strong>' . number_format($this->amount, 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . '</strong> ' . currency();
     }
 
     /**
@@ -75,7 +75,7 @@ class Account extends Model
      */
     public function getThreshold()
     {
-        return 'Seuil: <strong>' . number_format($this->threshold, 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . '</strong> FCFA';
+        return 'Seuil: <strong>' . number_format($this->threshold, 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . '</strong> ' . currency();
     }
 
     /**
@@ -96,8 +96,4 @@ class Account extends Model
         else if (App::getLocale() == 'en')
             return ['decimal' => '.', 'separator' => ','];
     }
-
-    /*
-     * TODO: Gerer la devise
-     */
 }

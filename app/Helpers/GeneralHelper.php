@@ -67,12 +67,12 @@ if(!function_exists('text_format'))
 
 if(!function_exists('currency'))
 {
-
     /**
      * @return string
      */
     function currency()
     {
-        return App\Models\Currency::where('activated', true)->symbol;
+        $currency = App\Models\Currency::where('activated', true)->first();
+        return $currency->symbol;
     }
 }
