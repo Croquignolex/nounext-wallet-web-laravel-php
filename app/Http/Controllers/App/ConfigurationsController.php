@@ -28,4 +28,8 @@ class ConfigurationsController extends Controller
     {
         //
     }
+
+    /*
+     * TODO: Avoir une zone de gestion des devise
+     */
 }
