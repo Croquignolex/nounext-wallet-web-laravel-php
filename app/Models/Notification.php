@@ -39,6 +39,15 @@ class Notification extends Model
     }
 
     /**
+     * Honer of the account
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function account()
+    {
+        return $this->belongsTo('App\Models\Account');
+    }
+
+    /**
      * @return mixed
      */
     public function getDateAttribute()
@@ -56,20 +65,13 @@ class Notification extends Model
     public function getDetailsAttribute()
     {
         $detail = '';
-        $account = Account::find($this->account_id)->first();
-        $account_name = $account->name;
+        $account_name = $this->account->name;
 
         switch ($this->type)
         {
-            case 'NEW':
-                $detail = 'Le compte ' . $account_name . ' vient d\'être créé';
-                break;
-            case 'REACHED':
-                $detail = 'Seuil du compte ' . $account_name . ' est atteint';
-                break;
-            case 'PASSED':
-                $detail = 'Seuil du compte ' . $account_name . ' est dépassé de ' . $account->diff;
-                break;
+            case 'NEW': $detail = 'Le compte ' . $account_name . ' vient d\'être créé'; break;
+            case 'REACHED':$detail = ' Le seuil du compte ' . $account_name . ' est atteint'; break;
+            case 'PASSED':$detail = 'Le seuil du compte ' . $account_name . ' est dépassé de ' . $this->account->diff; break;
         }
 
         return $detail;
@@ -97,8 +99,7 @@ class Notification extends Model
      */
     public function getUrlAttribute()
     {
-        $account = Account::find($this->account_id)->first();
-        return route_manager('accounts.show', ['account' => $account]);
+        return route_manager('accounts.show', ['account' => $this->account]);
     }
 
     /**

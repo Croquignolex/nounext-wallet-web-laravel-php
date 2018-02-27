@@ -44,11 +44,14 @@ class Account extends Model
                 'account_id' => $account->id
             ]);
         });
+    }
 
-        static::deleted(function ($account) {
-            $notification = Notification::where('account_id', $account->id);
-            $notification->delete();
-        });
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function notifications()
+    {
+        return $this->hasMany('App\Models\Notification');
     }
 
     /**
