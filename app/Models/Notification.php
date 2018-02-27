@@ -14,7 +14,7 @@ class Notification extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'details', 'icon', 'url', 'color', 'user_id'
+        'type', 'icon', 'url', 'color', 'user_id', 'account_id'
     ];
 
     /**
@@ -48,5 +48,90 @@ class Notification extends Model
             return $date->format('d-m-Y à h:i:s');
         else if (App::getLocale() == 'en')
             return $date->format('m-d-Y \a\t h:i:sa');
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDetailsAttribute()
+    {
+        $detail = '';
+        $account = Account::find($this->account_id)->first();
+        $account_name = $account->name;
+
+        switch ($this->type)
+        {
+            case 'NEW':
+                $detail = 'Le compte ' . $account_name . ' vient d\'être créé';
+                break;
+            case 'REACHED':
+                $detail = 'Seuil du compte ' . $account_name . ' est atteint';
+                break;
+            case 'PASSED':
+                $detail = 'Seuil du compte ' . $account_name . ' est dépassé de ' . $account->diff;
+                break;
+        }
+
+        return $detail;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitleAttribute()
+    {
+        $title = '';
+
+        switch ($this->type)
+        {
+            case 'NEW': $title = 'Nouveau compte'; break;
+            case 'REACHED': $title = 'Seuil atteint'; break;
+            case 'PASSED': $title = 'Seuil dépassé'; break;
+        }
+
+        return $title;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUrlAttribute()
+    {
+        $account = Account::find($this->account_id)->first();
+        return route_manager('accounts.show', ['account' => $account]);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIconAttribute()
+    {
+        $icon = '';
+
+        switch ($this->type)
+        {
+            case 'NEW': $icon = 'plus'; break;
+            case 'REACHED': $icon = 'audio'; break;
+            case 'PASSED': $icon = 'beaker'; break;
+        }
+
+        return $icon;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColorAttribute()
+    {
+        $color = '';
+
+        switch ($this->type)
+        {
+            case 'NEW': $color = 'success'; break;
+            case 'REACHED': $color = 'warning'; break;
+            case 'PASSED': $color = 'danger'; break;
+        }
+
+        return $color;
     }
 }

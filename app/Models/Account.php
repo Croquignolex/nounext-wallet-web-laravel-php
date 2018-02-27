@@ -27,21 +27,27 @@ class Account extends Model
         static::updated(function ($account) {
             if ($account->amount == $account->threshold) {
                 Auth::user()->notifications()->create([
-                    'title' => 'Seuil atteint',
-                    'details' => 'Seuil du compte ' . $account->getName() . ' est atteint.',
-                    'icon' => 'audio',
-                    'url' => route_manager('accounts.show', ['account' => $account]),
-                    'color' => 'warning',
+                    'type' => 'REACHED',
+                    'account_id' => $account->id
                 ]);
             } else if ($account->amount < $account->threshold) {
                 Auth::user()->notifications()->create([
-                    'title' => 'Seuil dépassé',
-                    'details' => 'Seuil du compte ' . $account->getName() . ' est dépassé de ' . $account->diff,
-                    'icon' => 'beaker',
-                    'url' => route_manager('accounts.show', ['account' => $account]),
-                    'color' => 'danger',
+                    'type' => 'PASSED',
+                    'account_id' => $account->id
                 ]);
             }
+        });
+
+        static::created(function ($account) {
+            Auth::user()->notifications()->create([
+                'type' => 'NEW',
+                'account_id' => $account->id
+            ]);
+        });
+
+        static::deleted(function ($account) {
+            $notification = Notification::where('account_id', $account->id);
+            $notification->delete();
         });
     }
 
