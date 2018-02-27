@@ -7,16 +7,16 @@
         {{ csrf_field() }}
         {{ method_field('PUT') }}
         @include('partials.input', ['placeholder' => 'Nom', 'type' => 'text',
-            'name' => 'name', 'id' => 'name', 'value' => $account->name ?? old('name')])
+            'name' => 'name', 'id' => 'name', 'value' => old('name') ?? $account->name])
 
         @include('partials.input', ['placeholder' => 'Description', 'type' => 'text',
-            'name' => 'description', 'id' => 'description', 'value' => $account->description ?? old('description')])
+            'name' => 'description', 'id' => 'description', 'value' => old('description') ?? $account->description])
 
         @include('partials.input', ['placeholder' => 'Montant initial', 'type' => 'number',
-            'name' => 'amount', 'id' => 'amount', 'value' => $account->amount ?? old('amount')])
+            'name' => 'amount', 'id' => 'amount', 'value' => old('amount') ?? $account->amount])
 
         @include('partials.input', ['placeholder' => 'Seuil minimum', 'type' => 'number',
-            'name' => 'threshold', 'id' => 'threshold', 'value' => $account->threshold ?? old('threshold')])
+            'name' => 'threshold', 'id' => 'threshold', 'value' => old('threshold') ?? $account->threshold  ])
 
 
         <div class="form-group text-center">
