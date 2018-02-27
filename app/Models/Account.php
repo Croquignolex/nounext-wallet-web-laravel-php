@@ -50,7 +50,10 @@ class Account extends Model
      */
     public function getDiffAttribute()
     {
-        return number_format(( $this->threshold - $this->amount), 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . ' ' .currency();
+        if(App::getLocale() == 'fr')
+            return number_format(($this->threshold - $this->amount), 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . ' ' .currency();
+        else if (App::getLocale() == 'en')
+            return currency() . ' ' . number_format(($this->threshold - $this->amount), 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']);
     }
 
     /**
@@ -67,7 +70,7 @@ class Account extends Model
      */
     public function getAmount()
     {
-        return 'Solde: <strong>' . number_format($this->amount, 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . '</strong> ' . currency();
+        return $this->amountDisplayer('Solde', $this->amount);
     }
 
     /**
@@ -75,7 +78,7 @@ class Account extends Model
      */
     public function getThreshold()
     {
-        return 'Seuil: <strong>' . number_format($this->threshold, 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . '</strong> ' . currency();
+        return $this->amountDisplayer('Seuil', $this->threshold);
     }
 
     /**
@@ -95,5 +98,13 @@ class Account extends Model
             return ['decimal' => ',', 'separator' => '.'];
         else if (App::getLocale() == 'en')
             return ['decimal' => '.', 'separator' => ','];
+    }
+
+    private function amountDisplayer($text, $amount)
+    {
+        if(App::getLocale() == 'fr')
+            return $text . ': <strong>' . number_format($amount, 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . '</strong> <small>' . currency() . '</small>';
+        else if (App::getLocale() == 'en')
+            return $text . ': <small>' . currency() . '</small> <strong>' . number_format($amount, 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . '</strong>';
     }
 }
