@@ -1,6 +1,24 @@
 $(function () {
-    function minMaxValidation(length, min, max, element){ 
-        if(length < min || length > max) setErrorIndicator(element); 
+    function minMaxValidation(element, min, max){
+        var length = element.val().length;
+        if(length < min || length > max) setErrorIndicator(element);
+        else setSuccessIndicator(element);
+    }
+
+    function integerValidation(element){
+        if(!element.val().match(/^[0-9]+$/)) setErrorIndicator(element);
+        else setSuccessIndicator(element);
+    }
+
+    function emailValidation(element){
+        var value = element.val();
+        var match = value.match(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i);
+        if(!match || value.length > 255) setErrorIndicator(element);
+        else setSuccessIndicator(element);
+    }
+
+    function confirmationValidation(element){
+        if(element.val() != $('#password').val()) setErrorIndicator(element);
         else setSuccessIndicator(element);
     }
 
@@ -15,119 +33,47 @@ $(function () {
     }    
 
     //-- Change validations
-    $('#name').change(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 2, 100, element);
-    });
+    $('#name').change(function () { minMaxValidation($(this), 2, 100); });
  
-    $('#description').change(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 2, 255, element);
-    });
+    $('#description').change(function () { minMaxValidation($(this), 2, 255); });
 
-    $('#title').change(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 2, 100, element);
-    });
+    $('#title').change(function () { minMaxValidation($(this), 2, 100); });
 
-    $('#details').change(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 2, 255, element);
-    });
+    $('#details').change(function () { minMaxValidation($(this), 2, 255); });
 
-    $('#symbol').change(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 1, 5, element);
-    });
- 
-    $('#amount').change(function () {
-        var element = $(this);  
-        if(!element.val().match(/^[0-9]+$/)) setErrorIndicator(element);
-        else setSuccessIndicator(element);
-    });
+    $('#symbol').change(function () { minMaxValidation($(this), 1, 5); });
 
-    $('#threshold').change(function () {
-        var element = $(this);
-        if(!element.val().match(/^[0-9]+$/)) setErrorIndicator(element);
-        else setSuccessIndicator(element);
-    });
+    $('#password').change(function () { minMaxValidation($(this), 6, 255); });
 
-    $('#password').change(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 6, 255, element);
-    });
+    $('#amount').change(function () { integerValidation($(this)); });
 
-    $('#email').change(function () {
-        var element = $(this);
-        var value = element.val();
-        var match = value.match(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i); 
-        if(!match || value.length > 255) setErrorIndicator(element);
-        else setSuccessIndicator(element);
-    });
+    $('#threshold').change(function () { integerValidation($(this)); });
 
-    $('#password_confirmation').change(function () {
-        var element = $(this); 
-        if(element.val() != $('#password').val()) setErrorIndicator(element); 
-        else setSuccessIndicator(element);
-    });
+    $('#email').change(function () { emailValidation($(this)); });
+
+    $('#password_confirmation').change(function () { confirmationValidation($(this)); });
 
     //--Keyup validations 
-    $('#name').keyup(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 2, 100, element);
-    });
- 
-    $('#description').keyup(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 2, 255, element);
-    });
+    $('#name').keyup(function () { minMaxValidation($(this), 2, 100); });
 
-    $('#title').keyup(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 2, 100, element);
-    });
+    $('#description').keyup(function () { minMaxValidation($(this), 2, 255); });
 
-    $('#details').keyup(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 2, 255, element);
-    });
+    $('#title').keyup(function () { minMaxValidation($(this), 2, 100); });
 
-    $('#symbol').keyup(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 1, 5, element);
-    });
+    $('#details').keyup(function () { minMaxValidation($(this), 2, 255); });
 
-    //--Validations
-    $('#amount').keyup(function () {
-        var element = $(this);  
-        if(!element.val().match(/^[0-9]+$/)) setErrorIndicator(element);
-        else setSuccessIndicator(element);
-    });
+    $('#symbol').keyup(function () { minMaxValidation($(this), 1, 5); });
 
-    $('#threshold').keyup(function () {
-        var element = $(this);
-        if(!element.val().match(/^[0-9]+$/)) setErrorIndicator(element);
-        else setSuccessIndicator(element);
-    });
+    $('#password').keyup(function () { minMaxValidation($(this), 6, 255); });
 
-    $('#password').keyup(function () {
-        var element = $(this);
-        minMaxValidation(element.val().length, 6, 255, element);
-    });
+    $('#amount').keyup(function () { integerValidation($(this)); });
 
-    $('#email').keyup(function () {
-        var element = $(this);
-        var value = element.val();
-        var match = value.match(/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/i); 
-        if(!match || value.length > 255) setErrorIndicator(element);
-        else setSuccessIndicator(element);
-    });
+    $('#threshold').keyup(function () { integerValidation($(this)); });
 
-    $('#password_confirmation').keyup(function () {
-        var element = $(this); 
-        if(element.val() != $('#password').val()) setErrorIndicator(element); 
-        else setSuccessIndicator(element);
-    });
+    $('#email').keyup(function () { emailValidation($(this)); });
+
+    $('#password_confirmation').keyup(function () { confirmationValidation($(this)); });
+
 
     //--Click validations
     $('#register').click(function () {
@@ -332,7 +278,3 @@ $(function () {
         return isValid;
     });
 });
-
-/*
- TODO: reduire le code JS et creant les fonctions
- */
