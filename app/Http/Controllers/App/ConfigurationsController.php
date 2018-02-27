@@ -32,4 +32,8 @@ class ConfigurationsController extends Controller
     /*
      * TODO: Avoir une zone de gestion des devise
      */
+
+    /*
+    * TODO: Avoir une zone de gestion du profil d'utiisateur
+    */
 }
