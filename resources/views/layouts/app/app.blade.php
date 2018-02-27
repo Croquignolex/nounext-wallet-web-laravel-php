@@ -1,4 +1,4 @@
-
+@inject('notificationService', 'App\Services\NotificationService')
 @extends('layouts.master')
 
 @section('title')
@@ -25,5 +25,21 @@
 
 @push('script.layout')
     <script src="{{ js_asset('app') }}"></script>
+    <script>
+        $(function () {
+            $('#notifications').click(function () {
+                $.ajax({
+                    method: 'GET',
+                    url: '{{ route_manager('viewed') }}',
+                    dataType: "json"
+                })
+                .done(function(data) {
+                    $('#notifications').html("<span class=\"badge badge-success\">0</span> " +
+                        "<span class=\"oi oi-bell\"></span> ");
+                })
+                .fail(function(data) {});
+            });
+        });
+    </script>
     @stack('page')
 @endpush

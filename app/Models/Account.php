@@ -55,6 +55,15 @@ class Account extends Model
     }
 
     /**
+     * Honer of the account
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+
+    /**
      * @return mixed
      */
     public function getDiffAttribute()
@@ -63,15 +72,6 @@ class Account extends Model
             return number_format(($this->threshold - $this->amount), 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']) . ' ' .currency();
         else if (App::getLocale() == 'en')
             return currency() . ' ' . number_format(($this->threshold - $this->amount), 0, $this->getFormaters()['decimal'], $this->getFormaters()['separator']);
-    }
-
-    /**
-     * Honer of the account
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
     }
 
     /**

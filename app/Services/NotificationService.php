@@ -18,7 +18,7 @@ class NotificationService
     public function __construct()
     {
         $this->notifications = User::find(Auth::user()->id)->notifications->sortByDesc('created_at');
-        $this->notificationsNumber = $this->notifications->count();
+        $this->notificationsNumber = $this->notifications->where('viewed', false)->count();
     }
 
     public function getNotificationsNumber()
