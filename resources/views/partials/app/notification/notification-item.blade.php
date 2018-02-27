@@ -6,7 +6,7 @@
     <p>
         <a href="{{ $notification->url }}" class="text-{{ $notification->color }}">
             <span class="oi oi-{{ $notification->icon }}"></span>&nbsp;{{ $notification->title }}
-            <small class="text-muted font-italic">- {{ $notification->created_at }}</small>
+            <small class="text-muted font-italic">- {{ $notification->date }}</small>
         </a><br>
         {!! text_format($notification->details, 40) !!}
     </p>
@@ -16,5 +16,3 @@
         {{ method_field('DELETE') }}
     </form>
 </div>
-
-{{--TODO: format notification created at date --}}

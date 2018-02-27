@@ -39,6 +39,6 @@ class NotificationsController extends Controller
     public function destroy(Request $request, $language, Notification $notification)
     {
         $notification->delete();
-        return redirect($request->session()->previousUrl());
+        return back();
     }
 }
