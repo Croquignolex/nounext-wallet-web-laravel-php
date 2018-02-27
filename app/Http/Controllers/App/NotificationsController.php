@@ -30,7 +30,13 @@ class NotificationsController extends Controller
     {
         $notifications = Auth::user()->notifications->sortByDesc('created_at');
 
-        $this->parginate($request, $notifications);
+        foreach($notifications as $notification)
+        {
+            $notification->viewed = true;
+            $notification->save();
+        }
+
+        $this->parginate($request, $notifications, 10);
         return view('notifications.index', ['paginationTools' => $this->paginationTools]);
     }
 
