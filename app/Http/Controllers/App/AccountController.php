@@ -50,18 +50,16 @@ class AccountController extends Controller
      */
     public function store(AccountRequest $request)
     {  
-        if($this->accountExist($request->name)) $this->returnError();
-        else
-        {
-            Auth::user()->accounts()->create($request->input());
+        $this->accountExist($request->name);
 
-            flash_message(
-                __('general.success'), 'Compte ajouté avec succès', 
-                'success', 'oi oi-thumb-up'
-            );
+        Auth::user()->accounts()->create($request->input());
 
-            return redirect($this->redirectTo());
-        }  
+        flash_message(
+            __('general.success'), 'Compte ajouté avec succès',
+            'success', 'oi oi-thumb-up'
+        );
+
+        return redirect($this->redirectTo());
     }
 
     /**
@@ -99,18 +97,16 @@ class AccountController extends Controller
      */
     public function update(AccountRequest $request, $language, Account $account)
     {
-        if($this->accountExist($request->name, 1)) $this->returnError();
-        else
-        { 
-            $account->update($request->all());
+        $this->accountExist($request->name, $account->id);
 
-            flash_message(
-                __('general.success'), 'Compte modifié avec succès.', 
-                'success', 'oi oi-thumb-up'
-            );
+        $account->update($request->all());
 
-            return redirect($this->redirectTo());
-        }  
+        flash_message(
+            __('general.success'), 'Compte modifié avec succès.',
+            'success', 'oi oi-thumb-up'
+        );
+
+        return redirect($this->redirectTo());
     }
 
     /**
@@ -136,26 +132,16 @@ class AccountController extends Controller
      * Check if the account already exist
      *
      * @param  string $name
-     * @param int $offset
-     * @return bool
-     */
-    private function accountExist($name, $offset = 0)
-    {
-        if(Auth::user()->accounts->where('name', $name)->count() > $offset) return true;
-        else return false; 
-    }
-
-    /**
-     * Return to form with error
-     *
+     * @param int $account_id
      * @return void
      * @throws ValidationException
      */
-    private function returnError()
+    private function accountExist($name, $account_id = 0)
     {
-        throw ValidationException::withMessages([
-            'name' => 'Un compte existe déjà avec ce nom',
-        ])->status(423);
+        if(Auth::user()->accounts->where('name', $name)->where('id', '<>', $account_id)->count() > 0)
+            throw ValidationException::withMessages([
+                'name' => 'Un compte existe déjà avec ce nom',
+            ])->status(423);
     }
 
     /**

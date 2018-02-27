@@ -45,18 +45,16 @@ class CurrenciesController extends Controller
      */
     public function store(CurrencyRequest $request)
     {
-        if($this->currencyExist($request->title)) $this->returnError();
-        else
-        {
-            Auth::user()->currencies()->create($request->input());
+        $this->currencyExist($request->title);
 
-            flash_message(
-                __('general.success'), 'Dévise ajouté avec succès',
-                'success', 'oi oi-thumb-up'
-            );
+        Auth::user()->currencies()->create($request->input());
 
-            return redirect($this->redirectTo());
-        }
+        flash_message(
+            __('general.success'), 'Dévise ajouté avec succès',
+            'success', 'oi oi-thumb-up'
+        );
+
+        return redirect($this->redirectTo());
     }
 
     /**
@@ -94,18 +92,16 @@ class CurrenciesController extends Controller
      */
     public function update(CurrencyRequest $request, $language, Currency $currency)
     {
-        if($this->currencyExist($request->title, 1)) $this->returnError();
-        else
-        {
-            $currency->update($request->all());
+        $this->currencyExist($request->title, $currency->id);
 
-            flash_message(
-                __('general.success'), 'Dévise modifié avec succès.',
-                'success', 'oi oi-thumb-up'
-            );
+        $currency->update($request->all());
 
-            return redirect($this->redirectTo());
-        }
+        flash_message(
+            __('general.success'), 'Dévise modifié avec succès.',
+            'success', 'oi oi-thumb-up'
+        );
+
+        return redirect($this->redirectTo());
     }
 
     /**
@@ -131,26 +127,16 @@ class CurrenciesController extends Controller
      * Check if the account already exist
      *
      * @param $title
-     * @param int $offset
-     * @return bool
-     */
-    private function currencyExist($title, $offset = 0)
-    {
-        if(Currency::where('title', $title)->count() > $offset) return true;
-        else return false;
-    }
-
-    /**
-     * Return to form with error
-     *
+     * @param int $currency_id
      * @return void
      * @throws ValidationException
      */
-    private function returnError()
+    private function currencyExist($title, $currency_id = 0)
     {
-        throw ValidationException::withMessages([
-            'title' => 'Une dévise existe déjà avec ce titre',
-        ])->status(423);
+        if(Auth::user()->currencies->where('title', $title)->where('id', '<>', $currency_id)->count() > 0)
+            throw ValidationException::withMessages([
+                'title' => 'Une dévise existe déjà avec ce titre',
+            ])->status(423);
     }
 
     /**
