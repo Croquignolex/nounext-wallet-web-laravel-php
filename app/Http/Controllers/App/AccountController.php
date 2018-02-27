@@ -153,8 +153,4 @@ class AccountController extends Controller
     {
         return route_manager('accounts.index');
     }
-
-    /*
-     * TODO: in account delete, remove the notification if exist
-     */
 }

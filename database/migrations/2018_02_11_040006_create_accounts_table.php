@@ -18,8 +18,8 @@ class CreateAccountsTable extends Migration
             $table->string('name'); 
             $table->text('description');
             $table->string('color');
-            $table->integer('amount');
-            $table->integer('threshold');
+            $table->integer('amount')->unsigned();
+            $table->integer('threshold')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
 
