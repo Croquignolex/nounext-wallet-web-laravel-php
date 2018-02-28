@@ -19,6 +19,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('W@llet2018'),
             'confirmed' => true,
             'token' => Str::random(64),
+            'deleted' => false
         ]);
     }
 }

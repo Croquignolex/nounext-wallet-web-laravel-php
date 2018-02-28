@@ -17,6 +17,7 @@ class CurrenciesTableSeeder extends Seeder
             'symbol' => 'XFA',
             'activated' => true,
             'user_id' => 1,
+            'deleted' => false
         ]);
     }
 }

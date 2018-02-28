@@ -38,7 +38,6 @@ class User extends Authenticatable
 
         static::creating(function($user) {
             $user->token = User::getUniqueToken();
-            $user->confirmed = false;
         });
 
         static::updating(function($user) {

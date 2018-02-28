@@ -17,10 +17,10 @@ class CreateCurrenciesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('details');
-            $table->string('symbol');
-            $table->boolean('activated');
+            $table->string('symbol')->unique();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
+            $table->boolean('deleted')->default(false);
 
             $table->foreign('user_id')
                 ->references('id')
